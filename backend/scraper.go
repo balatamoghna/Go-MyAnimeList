@@ -54,22 +54,16 @@ func GetByID(id int) m.Anime {
 
 		e.ForEach("div.spaceit", func(i int, h *colly.HTMLElement) {
 			if h.ChildText("span") == "Episodes:" {
-				details.Episode, _ = strconv.Atoi(strings.Split(h.Text, "\n")[2])
-			}
-			if h.ChildText("span") == "Type:" {
-				details.Type = strings.Split(h.Text, "\n")[2]
+				details.Episode, _ = strconv.Atoi(strings.TrimSpace(strings.Split(h.Text, "\n")[2]))
 			}
 			if h.ChildText("span") == "Status:" {
-				details.Status = strings.Split(h.Text, "\n")[2]
+				details.Status = strings.TrimSpace(strings.Split(h.Text, "\n")[2])
 			}
 			if h.ChildText("span") == "Source:" {
-				details.Source = strings.Split(h.Text, "\n")[2]
+				details.Source = strings.TrimSpace(strings.Split(h.Text, "\n")[2])
 			}
 			if h.ChildText("span") == "Duration:" {
-				details.Duration = strings.Split(h.Text, "\n")[2]
-			}
-			if h.ChildText("span") == "Rating:" {
-				details.Rating = strings.Split(h.Text, "\n")[2]
+				details.Duration = strings.TrimSpace(strings.Split(h.Text, "\n")[2])
 			}
 			if h.ChildText("span") == "Ranked:" {
 				s := strings.Split(h.Text, "\n")[2]
@@ -77,9 +71,20 @@ func GetByID(id int) m.Anime {
 				details.Rank, _ = strconv.Atoi(s)
 			}
 			if h.ChildText("span") == "Broadcast:" {
-				details.Broadcast = strings.Split(h.Text, "\n")[2]
+				details.Broadcast = strings.TrimSpace(strings.Split(h.Text, "\n")[2])
 			}
 
+		})
+		e.ForEach("div", func(i int, h *colly.HTMLElement) {
+			if h.ChildText("span") == "Status:" {
+				details.Status = strings.TrimSpace(strings.Split(h.Text, "\n")[2])
+			}
+			if h.ChildText("span") == "Rating:" {
+				details.Rating = strings.TrimSpace(strings.Split(h.Text, "\n")[2])
+			}
+			if h.ChildText("span") == "Type:" {
+				details.Type = strings.TrimSpace(strings.Split(h.Text, "\n")[2])
+			}
 		})
 	})
 

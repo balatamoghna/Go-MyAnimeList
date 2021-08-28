@@ -3,6 +3,7 @@ package backend
 import (
 	"encoding/json"
 	"strconv"
+	"strings"
 
 	"github.com/gofiber/fiber/v2"
 	m "trademarkia.com/animeAPI/model"
@@ -34,7 +35,7 @@ func FindAnime(c *fiber.Ctx) error {
 		anime = GetByID(id)
 	}
 	DetailsJSON, _ := json.MarshalIndent(anime, "", "\t")
-	return c.SendString(string(DetailsJSON))
+	return c.SendString(strings.ReplaceAll(string(DetailsJSON), "\\u0026", "&"))
 }
 
 //AboutMe return details about myself
