@@ -92,9 +92,6 @@ type Anime struct {
 ![Example ID given in question](https://user-images.githubusercontent.com/480968/131229439-29430d6d-20a4-47f0-9ade-4f8a4026c0be.png)
 
 
-## Video
-[![Watch the video here](https://img.youtube.com/vi/ZnL5h8xfhL4/0.jpg)](https://youtu.be/ZnL5h8xfhL4)
-
 ## Unit Tests
 Generic tests have been included in the project in accordance to given bonus point.
 To try the unit tests, run:
